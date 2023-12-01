@@ -3,7 +3,7 @@
 PartOne(lines);
 PartTwo(lines);
 
-static void PartOne(IEnumerable<string> lines)
+void PartOne(IEnumerable<string> lines)
 {
     int mySum = 0;
     foreach (var line in lines)
@@ -17,7 +17,7 @@ static void PartOne(IEnumerable<string> lines)
     Console.WriteLine(mySum);
 }
 
-static void PartTwo(IEnumerable<string> lines)
+void PartTwo(IEnumerable<string> lines)
 {
     int mySum = 0;
     foreach (var line in lines)
@@ -32,7 +32,7 @@ static void PartTwo(IEnumerable<string> lines)
 
     Console.WriteLine(mySum);
     
-    static RpsMove GetMyMoveFromOpponentMoveAndResult(RpsMove opponentMove, RpsResult result)
+    RpsMove GetMyMoveFromOpponentMoveAndResult(RpsMove opponentMove, RpsResult result)
     {
         if (result == RpsResult.Lose)
         {
@@ -67,7 +67,7 @@ static void PartTwo(IEnumerable<string> lines)
     }
 }
 
-static int CalculatePointsForTurn(RpsMove opponent, RpsMove myMove)
+int CalculatePointsForTurn(RpsMove opponent, RpsMove myMove)
 {
     int mySum = (int)myMove;
 
@@ -85,7 +85,7 @@ static int CalculatePointsForTurn(RpsMove opponent, RpsMove myMove)
     return mySum;
 }
 
-static RpsMove GetRpsMove(string move) => move switch
+RpsMove GetRpsMove(string move) => move switch
 {
     "A" => RpsMove.Rock,
     "B" => RpsMove.Paper,
@@ -96,7 +96,7 @@ static RpsMove GetRpsMove(string move) => move switch
     _ => throw new ArgumentOutOfRangeException(nameof(move), move, null)
 };
 
-static RpsResult GetRpsResult(string result) => result switch
+RpsResult GetRpsResult(string result) => result switch
 {
     "X" => RpsResult.Lose,
     "Y" => RpsResult.Draw,

@@ -4,7 +4,7 @@ IEnumerable<string> lines = File.ReadLines("Inputs.txt");
 PartOne(lines);
 PartTwo(lines);
 
-static void PartOne(IEnumerable<string> lines)
+void PartOne(IEnumerable<string> lines)
 {
     int sum = 0;
     
@@ -16,14 +16,14 @@ static void PartOne(IEnumerable<string> lines)
 
     Console.WriteLine(sum);
 
-    static string GetCalibrationValue(string line)
+    string GetCalibrationValue(string line)
     {
         var nums = line.Select(c => c).Where(char.IsDigit);
         return $"{nums.First()}{nums.Last()}";
     }
 }
 
-static void PartTwo(IEnumerable<string> lines)
+void PartTwo(IEnumerable<string> lines)
 {
     int sum = 0;
     
@@ -35,7 +35,7 @@ static void PartTwo(IEnumerable<string> lines)
 
     Console.WriteLine(sum);
 
-    static string GetCalibrationValue(string line)
+    string GetCalibrationValue(string line)
     {
         var numbers = new string[]
         {
@@ -70,7 +70,7 @@ static void PartTwo(IEnumerable<string> lines)
         return $"{foundNumbers.First()}{foundNumbers.Last()}";
     }
 
-    static char ConvertWordToNumber(string number) => number switch
+    char ConvertWordToNumber(string number) => number switch
     {
         "zero" => '0',
         "one" => '1',
