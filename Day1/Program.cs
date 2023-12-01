@@ -1,37 +1,38 @@
 ﻿using System.Text;
 
-PartOne();
-PartTwo();
+IEnumerable<string> lines = File.ReadLines("Inputs.txt");
+PartOne(lines);
+PartTwo(lines);
 
-static void PartOne()
+static void PartOne(IEnumerable<string> lines)
 {
     int sum = 0;
-
-    using StreamReader reader = new("Inputs.txt");
-    while (!reader.EndOfStream)
+    
+    foreach (var line in lines)
     {
-        var num = int.Parse(GetCalibrationValue(reader.ReadLine()));
+        var num = int.Parse(GetCalibrationValue(line));
         sum += num;
     }
+
     Console.WriteLine(sum);
 
-        static string GetCalibrationValue(string line)
+    static string GetCalibrationValue(string line)
     {
         var nums = line.Select(c => c).Where(char.IsDigit);
         return $"{nums.First()}{nums.Last()}";
     }
 }
 
-static void PartTwo()
+static void PartTwo(IEnumerable<string> lines)
 {
     int sum = 0;
-
-    using StreamReader reader = new("Inputs.txt");
-    while (!reader.EndOfStream)
+    
+    foreach (var line in lines)
     {
-        var num = int.Parse(GetCalibrationValue(reader.ReadLine()));
+        var num = int.Parse(GetCalibrationValue(line));
         sum += num;
     }
+
     Console.WriteLine(sum);
 
     static string GetCalibrationValue(string line)
@@ -40,27 +41,22 @@ static void PartTwo()
         {
             "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
         };
-        
+
         List<char> foundNumbers = new();
         StringBuilder sb = new();
-        
-        for (int i = 0; i < line.Length; i++)
+
+        for (var i = 0; i < line.Length; i++)
         {
-            var currentChar = line[i];
-            if (Char.IsDigit(currentChar))
+            if (Char.IsDigit(line[i]))
             {
-                foundNumbers.Add(currentChar);
+                foundNumbers.Add(line[i]);
                 continue;
             }
-            sb.Append(currentChar);
-            for (int j = i; j < line.Length; j++)
-            {
-                if (j != i)
-                {
-                    var nextCurrentChar = line[j];
-                    sb.Append(nextCurrentChar);
-                }
 
+            sb.Append(line[i]);
+            for (var j = i + 1; j < line.Length; j++)
+            {
+                sb.Append(line[j]);
                 if (numbers.Contains(sb.ToString()))
                 {
                     foundNumbers.Add(ConvertWordToNumber(sb.ToString()));
@@ -68,12 +64,12 @@ static void PartTwo()
                     break;
                 }
             }
-
             sb.Clear();
         }
+
         return $"{foundNumbers.First()}{foundNumbers.Last()}";
     }
-    
+
     static char ConvertWordToNumber(string number) => number switch
     {
         "zero" => '0',
