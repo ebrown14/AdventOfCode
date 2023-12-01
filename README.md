@@ -1,2 +1,2 @@
-# AdventOfCode.2023
+# AdventOfCode
 Advent of Code!
