@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using System.Text;
+﻿using System.Text;
 
 IEnumerable<string> lines = File.ReadLines("Inputs.txt");
 
@@ -45,8 +44,8 @@ void PartTwo(IEnumerable<ElfGame> games)
 
 class ElfGame
 {
-    public int GameNumber { get; set; } = 0;
-    public List<ElfGamePull> Pulls { get; set; } = new List<ElfGamePull>();
+    public int GameNumber { get; }
+    public List<ElfGamePull> Pulls { get; } = new List<ElfGamePull>();
     public ElfGame(string line)
     {
         var splitOnColon = line.Split(':', StringSplitOptions.RemoveEmptyEntries);
@@ -63,24 +62,18 @@ class ElfGame
                 switch (colorCount[1])
                 {
                     case "red":
-                        var redCubes = int.Parse(colorCount[0]);
-                        if (redCubes > 12)
-                            gamePull.ValidPull = false;
-                        gamePull.RedCubes = redCubes;
+                        gamePull.RedCubes = int.Parse(colorCount[0]);
                         break;
                     case "blue":
-                        var blueCubes = int.Parse(colorCount[0]);
-                        if (blueCubes > 14)
-                            gamePull.ValidPull = false;
-                        gamePull.BlueCubes = blueCubes;
+                        gamePull.BlueCubes = int.Parse(colorCount[0]);
                         break;
                     case "green":
-                        var greenCubes = int.Parse(colorCount[0]);
-                        if (greenCubes > 13)
-                            gamePull.ValidPull = false;
-                        gamePull.GreenCubes = greenCubes;
+                        gamePull.GreenCubes = int.Parse(colorCount[0]);
                         break;
                 }
+                
+                if (gamePull.RedCubes > 12 || gamePull.BlueCubes > 14 || gamePull.GreenCubes > 13)
+                    gamePull.ValidPull = false;
             }
             Pulls.Add(gamePull);
         }
