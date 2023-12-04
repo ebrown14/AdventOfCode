@@ -32,8 +32,8 @@ void PartOne(char[][] charMap)
             if (char.IsDigit(character))
                 sb.Append(character);
             
-            if (!touchingSymbol && !IsDot(character))
-                touchingSymbol = IsTouchingSymbol(charMap, r, c, sb.ToString());
+            if (!touchingSymbol && character != '.')
+                touchingSymbol = IsTouchingSymbol(charMap, r, c);
             
             if ((character == '.' || IsElfSymbol(character) || c == charMap[r].Length - 1) 
                 && sb.Length > 0)
@@ -106,15 +106,15 @@ void PartTwo(char[][] charMap)
 }
 
 
-bool IsTouchingSymbol(char[][] charMap, int r, int c, string number)
+bool IsTouchingSymbol(char[][] charMap, int r, int c)
 {
-    bool touching = false;
-    for (int i = 0; i < directions.Length; i++)
+    var touching = false;
+    foreach (var direction in directions)
     {
-        var direction = directions[i];
         var row = r + direction[0];
         var col = c + direction[1];
-        if (row < 0 || row >= charMap.Length || col < 0 || col >= charMap[row].Length)
+        if (row < 0 || row >= charMap.Length 
+                    || col < 0 || col >= charMap[row].Length)
             continue;
         var potentialSymbol = charMap[row][col];
         if (IsElfSymbol(potentialSymbol))
@@ -130,12 +130,12 @@ bool IsTouchingSymbol(char[][] charMap, int r, int c, string number)
 List<int[]> IsTouchingNumber(char[][] charMap, int r, int c)
 {
     List<int[]> touchingDirections = new();
-    for (int i = 0; i < directions.Length; i++)
+    foreach (var direction in directions)
     {
-        var direction = directions[i];
         var row = r + direction[0];
         var col = c + direction[1];
-        if (row < 0 || row >= charMap.Length || col < 0 || col >= charMap[row].Length)
+        if (row < 0 || row >= charMap.Length 
+                    || col < 0 || col >= charMap[row].Length)
             continue;
         var potentialNumber = charMap[row][col];
         if (char.IsDigit(potentialNumber))
@@ -150,9 +150,4 @@ List<int[]> IsTouchingNumber(char[][] charMap, int r, int c)
 bool IsElfSymbol(char @char)
 {
     return @char != '.' && !char.IsDigit(@char);
-}
-
-bool IsDot(char @char)
-{
-    return @char == '.';
 }
