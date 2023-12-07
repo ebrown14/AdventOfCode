@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-var directions = new int[][]
+var directions = new[]
 {
     new[] { -1, 0 },
     new[] { -1, 1 },
