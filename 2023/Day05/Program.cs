@@ -4,23 +4,15 @@ PartOne(lines);
 
 void PartOne(string[] lines)
 {
-    Dictionary<long, long> seeds = lines.ElementAt(0)
+    var seeds = lines.ElementAt(0)
         .Split(':', StringSplitOptions.RemoveEmptyEntries)[1]
         .Split(" ", StringSplitOptions.RemoveEmptyEntries)
         .Select(long.Parse)
-        .ToDictionary(n => n, n => n);
-
-    Dictionary<long, long> seedToSoilMap = new();
-    Dictionary<long, long> soilToFertilizerMap = new();
-    Dictionary<long, long> fertilizerToWaterMap = new();
-    Dictionary<long, long> waterToLightMap = new();
-    Dictionary<long, long> lightToTempMap = new();
-    Dictionary<long, long> tempToHumidityMap = new();
-    Dictionary<long, long> humidityToLocationMap = new();
-
+        .ToDictionary(n => n, n => 0L);
+    
     FarmerMap[] maps = new FarmerMap[]
     {
-        new() { Map = seeds, Name = "Seeds" },
+        new() { Map = new() {seeds}, Name = "seeds"},
         new() { Map = new(), Name = "seedToSoilMap" },
         new() { Map = new(), Name = "soilToFertilizerMap" },
         new() { Map = new(), Name = "fertilizerToWaterMap" },
@@ -46,6 +38,7 @@ void PartOne(string[] lines)
         {
             while (lineIndex < lines.Length && char.IsDigit(lines[lineIndex][0]))
             {
+                Dictionary<long, long> tempDict = new();
                 var numberLine = lines[lineIndex];
                 var (destination, source, length) = numberLine
                     .Split(" ", StringSplitOptions.RemoveEmptyEntries)
@@ -54,36 +47,45 @@ void PartOne(string[] lines)
                 
                 for (long j = 0; j < length; j++)
                 {
-                    maps[mapIndex].Map.Add(source + j, destination + j);
+                    tempDict.Add(source + j, destination + j);
+                    
                     //Console.WriteLine("Map: {0}, source: {1}, destination: {2}", maps[mapIndex].Name, source + j, destination + j);
                 }
-
+                maps[mapIndex].Map.Add(tempDict);
                 lineIndex++;
             }
-
-            foreach (var source in maps[mapIndex - 1].Map.Keys)
+            
+            Dictionary<long, long> tempDict2 = new();
+            foreach (var map in maps[mapIndex].Map)
             {
-                if (!maps[mapIndex].Map.ContainsKey(source))
+                foreach (var lastMap in maps[mapIndex - 1].Map)
                 {
-                    maps[mapIndex].Map.Add(source, source);
-                    //Console.WriteLine("source: {0}, destination: {1}", source, source);
+                    foreach (var source in lastMap.Keys)
+                    {
+                        if (!map.ContainsKey(source) && !tempDict2.ContainsKey(source))
+                        {
+                            tempDict2.Add(source, lastMap[source]);
+                            //Console.WriteLine("Map: {0}, source: {1}, destination: {2}", maps[mapIndex].Name, source, lastMap[source]);
+                        }
+                    }
                 }
             }
         }
     }
-
-    List<long> locations = new();
+    
+    Console.WriteLine("Done");
+    /*List<long> locations = new();
     foreach (var seed in maps[0].Map.Keys)
     {
         locations.Add(maps[7].Map[maps[6].Map[maps[5].Map[maps[4].Map[maps[3].Map[maps[2].Map[maps[1].Map[seed]]]]]]]);
-    }
+    }*/
 
-    Console.WriteLine(locations.Min());
+    //Console.WriteLine(locations.Min());
 }
 
 class FarmerMap
 {
-    public Dictionary<long, long> Map { get; set; }
+    public List<Dictionary<long, long>> Map { get; set; }
     public string Name { get; set; }
 }
 
