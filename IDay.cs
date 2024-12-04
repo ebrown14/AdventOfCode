@@ -1,7 +1,7 @@
 ﻿public interface IDay
 {
-    public int Year => 1970;
-    public int Day => 0;
+    public int Year { get; }
+    public int Day { get; }
     public void Initialize();
     public string SolvePart1();
     public string SolvePart2();
