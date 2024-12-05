@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Reflection;
 
 /*Console.WriteLine("Enter year to run (2024):");
@@ -17,7 +18,9 @@ foreach (var day in days)
 {
     if (day is null) continue;
     day.Initialize();
-    Console.WriteLine($"{day.Title} Part 1: {day.SolvePart1()}");
-    Console.WriteLine($"{day.Title} Part 2: {day.SolvePart2()}");
+    Stopwatch sp = Stopwatch.StartNew();
+    Console.WriteLine($"{day.Title} Part 1: {day.SolvePart1()} ({sp.Elapsed})");
+    sp.Restart();
+    Console.WriteLine($"{day.Title} Part 2: {day.SolvePart2()} ({sp.Elapsed})");
     Console.WriteLine();
 }
