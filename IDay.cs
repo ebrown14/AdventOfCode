@@ -7,4 +7,12 @@
     public string SolvePart2();
 
     public string Title => $"{Year} Day {Day}";
+    public string GetPath(Type t) => $"{t.Namespace}//Day{Day}//";
+    public string GetPath() => GetPath(GetType());
+}
+
+public static class Globals
+{
+    public static string GetPath(IDay t) => $"{t.GetType().Namespace.Replace("AdventOfCode.", "")}//Day{t.Day}//";
+
 }

@@ -8,15 +8,15 @@ namespace TwentyFour;
 
 internal class Day1 : IDay
 {
-    public string FileName => "2024//Day1//day1.txt";
-    public int Year => 2024;
-    public int Day => 1;
+    public  int Year => 2024;
+    public  int Day => 1;
 
     int[] arr1;
     int[] arr2;
-    public void Initialize()
+    public  void Initialize()
     {
-        var lines = File.ReadLines(FileName)
+        var path = Globals.GetPath(this);
+        var lines = File.ReadLines(Path.Combine(path, "day1.txt"))
             .Select(l => l.Split(' ', StringSplitOptions.RemoveEmptyEntries));
 
         arr1 = lines
@@ -26,10 +26,11 @@ internal class Day1 : IDay
             .Select(l => int.Parse(l[1]))
             .ToArray();
     }
-    public string SolvePart1()
+    public  string SolvePart1()
     {
         var a = arr1.Order();
         var b = arr2.Order();
+
 
         List<int> distances = new();
         for (int i = 0; i < a.Count(); i++)
@@ -41,7 +42,7 @@ internal class Day1 : IDay
     }
 
 
-    public string SolvePart2()
+    public  string SolvePart2()
     {
 
         List<int> counts = new();
