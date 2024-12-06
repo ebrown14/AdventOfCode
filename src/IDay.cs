@@ -1,4 +1,6 @@
-﻿public interface IDay
+﻿using System.Diagnostics.CodeAnalysis;
+
+public interface IDay
 {
     public int Year { get; }
     public int Day { get; }
@@ -13,6 +15,10 @@
 
 public static class Globals
 {
-    public static string GetPath(IDay t) => $"{t.GetType().Namespace.Replace("AdventOfCode.", "")}//Day{t.Day}//";
+    public static string GetPath([NotNull] IDay day, string? suffix = null)
+    {
+        var @type = day.GetType();
+        return $"{@type.Namespace!.Replace("AdventOfCode.", "")}//Inputs//{@type.Name!}{suffix}.txt";
+    }
 
 }

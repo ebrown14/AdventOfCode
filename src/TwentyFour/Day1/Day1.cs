@@ -16,7 +16,7 @@ internal class Day1 : IDay
     public  void Initialize()
     {
         var path = Globals.GetPath(this);
-        var lines = File.ReadLines(Path.Combine(path, "day1.txt"))
+        var lines = File.ReadLines(Path.Combine(path))
             .Select(l => l.Split(' ', StringSplitOptions.RemoveEmptyEntries));
 
         arr1 = lines

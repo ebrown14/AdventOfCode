@@ -11,16 +11,19 @@
 		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
 	</PropertyGroup>
     <ItemGroup>
-      <None Update="TwentyFour\Day2\input.txt">
+      <None Update="TwentyFour\Inputs\Day1.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="TwentyFour\Day3\input.txt">
+      <None Update="TwentyFour\Inputs\Day4.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TwentyFour\Inputs\Day3.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TwentyFour\Inputs\Day2.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="TwentyThree\1\Inputs.txt">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="TwentyFour\Day1\day1.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="Inputs.txt">

@@ -5,11 +5,11 @@ public class Day2 : IDay
     public int Year => 2024;
     public  int Day => 2;
 
-    IEnumerable<string> lines;
+    string[] lines;
     public  void Initialize()
     {
         var path = Globals.GetPath(this);
-        lines = File.ReadLines(Path.Combine(path, "input.txt"));
+        lines = File.ReadAllLines(Path.Combine(path));
     }
 
     public string SolvePart1()
