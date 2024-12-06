@@ -11,10 +11,14 @@ namespace AdventOfCode.TwentyFour
         public int Year => 2024;
         public int Day => 5;
 
-        
+        IEnumerable<Page> pages;
         public void Initialize()
         {
-            var lines1 = File.ReadAllLines(Globals.GetPath(this, ".Pt1"));
+            pages = File.ReadAllLines(Globals.GetPath(this, ".Pt1")).Select(l => {
+                var parts = l.Split('|', StringSplitOptions.RemoveEmptyEntries);
+                return new Page { Left = int.Parse(parts[0]), Right = int.Parse(parts[1]) };
+            });
+
             var lines2 = File.ReadAllLines(Globals.GetPath(this, ".Pt2"));
         }
 
@@ -27,5 +31,13 @@ namespace AdventOfCode.TwentyFour
         {
             throw new NotImplementedException();
         }
+
+
+        class Page
+        {
+            public int Left { get; init; }
+            public int Right { get; init; }
+        }
     }
+
 }

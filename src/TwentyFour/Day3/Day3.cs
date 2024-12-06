@@ -22,18 +22,14 @@ namespace AdventOfCode.TwentyFour
 
         public string SolvePart1()
         {
-
             var regex = @"mul\(\d*,\d*\)";
             int sum = 0;
 
             var matches = Regex.Matches(line, regex);
-            var nums = matches.Select(m =>
-                m.Value.Split(["mul(", ",", ")"], StringSplitOptions.RemoveEmptyEntries));
+            var nums = matches.Select(m => m.Value.Split(["mul(", ",", ")"], StringSplitOptions.RemoveEmptyEntries));
             foreach (var num in nums)
-            {
                 sum += int.Parse(num[0]) * int.Parse(num[1]);
-            }
-
+            
             return sum.ToString();
         }
 
