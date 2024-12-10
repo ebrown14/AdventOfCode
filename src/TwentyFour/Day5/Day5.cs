@@ -24,12 +24,14 @@ namespace AdventOfCode.TwentyFour
 
         public string SolvePart1()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return "";
         }
 
         public string SolvePart2()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return "";
         }
 
 

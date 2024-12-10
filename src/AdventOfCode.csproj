@@ -23,6 +23,15 @@
       <None Update="TwentyFour\Inputs\Day2.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="TwentyFour\Inputs\Day5.Pt1.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="TwentyFour\Inputs\Day5.Pt2.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="TwentyFour\Inputs\Day6.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
       <None Update="TwentyThree\1\Inputs.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>

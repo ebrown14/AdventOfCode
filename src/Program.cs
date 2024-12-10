@@ -7,7 +7,6 @@ while (!int.TryParse(Console.ReadLine(), out year) || year < 2024 || year > 2024
     Console.WriteLine("Invalid year. Please enter a year between 2024 and 2024.");
 */
 
-Console.WriteLine(t);
 int year = 2024;
 var days = Assembly.GetExecutingAssembly().GetTypes()
     .Where(t => t.GetInterfaces().Contains(typeof(IDay)))
